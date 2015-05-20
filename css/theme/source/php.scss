@@ -61,6 +61,15 @@ section.has-light-background {
     }
 }
 
+.elephpant-images {
+    img {
+        margin: 0px!important;
+        background: none!important;
+        border: none!important;
+        box-shadow: none!important;
+    }
+}
+
 
 // Theme template ------------------------------
 @import "../template/theme";
