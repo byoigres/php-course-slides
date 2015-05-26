@@ -65,46 +65,455 @@
 							</ul>
 						</p>
 						<div class="elephpant-images fragment">
-							<img src="/images/php-elephant.png" alt="Elephpant" />
-							<img src="/images/php-elephant-letters.png" alt="Elephpant letters" />
+							<img src="images/php-elephant.png" alt="Elephpant" />
+							<img src="images/php-elephant-letters.png" alt="Elephpant letters" />
 						</div>
 					</section>
 
 					<section>
 						<h2>Etiquetas</h2>
+						<p>
+							Cuando PHP parsea un archivo, busca las etiquetas de
+							apertura y cierre que le dicen a PHP donde comenzar
+							y terminar de interpretar el código entre ellas. Todo
+							lo demás fuera de las etiquetas es ignorado por el
+							interprete de PHP.
+						</p>
+						<ul>
+							<li class="fragment">&lt;?php y ?&gt;</li>
+							<li class="fragment">&lt;? y ?&gt; conocidas como <i>Short Open Tags</i></li>
+							<li class="fragment">&lt;?= y ?&gt; para escapar variables</li>
+						</ul>
+					</section>
 
-						<pre>
-							<code data-trim class="php5">
+					<section>
+						<h2>¡Nunca utilizes las Short Open Tags!</h2>
+						<img src="images/ok-meme.jpg" alt="Ok" />
+					</section>
 
-1.- Hello
+					<section>
+						<h2>Ejemplo</h2>
+
+						<pre><code data-trim class="php5">1.- Hello
 &lt;?php
 echo " world!";
 $variable = "2.- Hello PHP";
 ?&gt
 &lt;/p&gt;
+
 &lt;br&gt;
+
 &lt;? echo $variable; ?&gt; &lt;!-- Con short_open_tag habilitado --&gt;
+
 &lt;br&gt;
-&lt;?= $variable ?&gt; &lt;!-- Forma abreviada de echo (v5.4+) --&gt;
-							</code>
-						</pre>
-						<pre>
-							<code class="">
-1.- Hello world!
+
+&lt;?= $variable ?&gt; &lt;!-- Forma abreviada de echo (v5.4+) --&gt;</code></pre>
+						<pre><code>1.- Hello world!
 2.- Hello PHP.
-3.- Hello PHP.
-							</code>
-						</pre>
+3.- Hello PHP.</code></pre>
 
 					</section>
 
 					<section>
-						<h2>Etiquetas</h2>
+						<h2>Variables</h2>
 						<ul>
-							<li>&lt;?php y ?&gt;</li>
-							<li>&lt;? y ?&gt; conocidas como Short Open Tags</li>
-							<li>&lt;?= y ?&gt;</li>
+							<li>Se declaran anteponiendo el caracter <i>$</i>.</li>
+							<li>No se requiere la definición explicita de su tipo de dato.</li>
 						</ul>
+						<pre><code class="php5">&lt;?php
+$variable = 'Hello world';
+$numero = 15;
+$flotante = 12.5</code></pre>
+					</section>
+
+					<section>
+						<h2>Sobre los tipos de datos</h2>
+						<p>
+							PHP soporta ocho tipos de datos primitivos
+						</p>
+					</section>
+
+					<section>
+						<h3>Cuatro tipos escalares:</h3>
+						<ul>
+							<li>boolean</li>
+							<li>integer</li>
+							<li>float (floating-point number, también conocido como double)</li>
+							<li>string</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Dos tipos compuestos:</h3>
+						<ul>
+							<li>array</li>
+							<li>object</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Y finalmente dos tipos especiales:</h3>
+						<ul>
+							<li>resource</li>
+							<li>NULL</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Booleans</h2>
+
+						<p>
+							Son un tipo de dato simple. Puede ser TRUE o FALSE.
+						</p>
+						<p>
+							Típicamente el resultado de una operación que retorna un boolean es pasado a una estructura de control.
+						</p>
+
+						<pre><code class="php5">&lt;?php
+// == es un operador que evalua igualdad y retorna un boolean.
+if ($action == "show_version") {
+    echo "The version is 1.23";
+}
+
+// esto no es necesario...
+if ($show_separators == TRUE) {
+    echo "<hr>\n";
+}
+
+// ...por que esta manera puede ser usada
+// exactamente con el mismo significado:
+if ($show_separators) {
+    echo "<hr>\n";
+}</code></pre>
+					</section>
+
+					<section>
+						<p>
+							Podemos expresar <i>FALSE</i> de las siguientes maneras:
+						</p>
+						<ul>
+							<li>El boolean <i>FALSE</i>.</li>
+							<li>El valor entero <i>0</i>.</li>
+							<li>El valor flotante <i>0.0</i>.</li>
+							<li>Una cadena de texto vacia o el string "0" (cero).</li>
+							<li>Un arreglo con cero elementos.</li>
+							<li>El tipo especial <i>NULL</i> (incluyendo variables sin asignar).</li>
+							<li>Objetos SimpleXML creados con <i>tags vacias</i>.</li>
+						</ul>
+					</section>
+
+					<section>
+						<p>
+							Cualquier otro valor es considerado <i>TRUE</i> (incluyendo resources)
+						</p>
+						<pre><code class="php5">&lt;?php
+var_dump((bool) "");        // bool(false)
+var_dump((bool) 1);         // bool(true)
+var_dump((bool) -2);        // bool(true)
+var_dump((bool) "foo");     // bool(true)
+var_dump((bool) 2.3e5);     // bool(true)
+var_dump((bool) array(12)); // bool(true)
+var_dump((bool) array());   // bool(false)
+var_dump((bool) "false");   // bool(true)</code></pre>
+					</section>
+
+					<section>
+						<h2>Strings</h2>
+						<p>
+							Una cadena de texto puede ser expesada de 4 maneras diferentes:
+						</p>
+						<ul>
+							<li>Comillas simples</li>
+							<li>Comillas dobles</li>
+							<li>Sintaxis Heredoc</li>
+							<li>Sintaxis Newdoc (desde PHP 5.3.0)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>String con comillas simples</h2>
+						<p>
+							La manera mas simple de especificar un string en utilizando comillas simples.
+						</p>
+						<p>
+							Para especificar una literal de comilla simple dentro de la cadena de texto
+							podemos escaparla con un backslash (\). Para especificar una literal backslash
+							simplemente se colocan dos (\\). Todas las demás literales expresadas con
+							backslash serán tratadas como backslash: esto significa que todas las demás
+							secuencias que se especifiquen como \n o \r darán como salida el texto a como
+							se especifica y no con algún significado especial.
+						</p>
+					</section>
+
+					<section>
+						<pre><code class="php5">&lt;?php
+echo 'Esta es una cadena simple';
+
+echo 'También puedes tener saltos de linea en
+las cadenas, esta es una manera correcta
+de hacerlo';
+
+echo 'Una vez dijo Terminator: I\'ll be back';
+// Imprime: Una vez dijo Terminator: I'll be back
+
+echo 'Eliminar C:\\*.*?';
+// Imprime: Eliminar C:\*.*?
+
+echo 'Borraste C:\*.*?';
+// Imprime: Borraste C:\*.*?
+
+echo 'Esto no genera una: \n nueva línea';
+// Imprime: Esto no genera una: \n nueva línea
+
+echo 'Las variables no se $interpretan $tampoco';
+// Imprime: Las variables no se $interpretan $tampoco</code></pre>
+					</section>
+
+					<section>
+						<h2>Strings con comillas dobles</h2>
+						<p>
+							Si la cadena de texto se encuentra con comillas dobles, PHP interpretará mas
+							secuencias de escape para caracteres especiales como <i>\n</i>, <i>\r</i>, <i>\t</i> o <i>\$</i>.
+							Además de poder escapar variables dentro de la cadena.
+						</p>
+						<pre><code class="php5">&lt;?php
+$texto = "mundo!";
+echo "Hola $texto";
+// Imprime: Hola mundo!</code></pre>
+					</section>
+
+					<section class="small">
+						<h2>Conversión de string a entero</h2>
+						<p>
+							Cuando una cadena de texto es evaluada en un contexto de entero, el valor resultante y el tipo de
+							dato son determinados de la siguiente manera:
+						</p>
+						<p>
+							Si la cadena de texto no contiene ninguno de los caracteres ',', 'e' o 'E' y el valor numérico
+							<i>encaja</i> en los limites del tipo numérico, la cadena de texto será evaluada como un entero.
+							En cualquier otro caso será evaluada como flotante.
+						</p>
+						<p>
+							El valor es dado por la porción inicial de la cadena de texto. Si la cadena comienza con un dato
+							numérico válido, este es el valor que será utilizado. De otra manera, el valor será 0 (cero).
+						</p>
+					</section>
+
+					<section>
+						<pre><code>&lt;?php
+$foo = 1 + "10.5";                // $foo es float (11.5)
+$foo = 1 + "-1.3e3";              // $foo es float (-1299)
+$foo = 1 + "bob-1.3e3";           // $foo es integer (1)
+$foo = 1 + "bob3";                // $foo es integer (1)
+$foo = 1 + "10 Small Pigs";       // $foo es integer (11)
+$foo = 4 + "10.2 Little Piggies"; // $foo es float (14.2)
+$foo = "10.0 pigs " + 1;          // $foo es float (11)
+$foo = "10.0 pigs " + 1.0;        // $foo es float (11)</code></pre>
+					</section>
+
+					<section>
+						<h2>Casteo de variables</h2>
+						<p>
+							El casteo de variables en PHP funciona de manera similar a C, el nombre del tipo de dato a castear
+							se coloca dentro de un par de parentesis antes de la variable a ser casteada.
+						</p>
+						<p>
+							Los tipos de casteos permitidos son:
+						</p>
+						<ul>
+							<li><strong>(int)</strong>, <strong>(integer)</strong> - castea a integer</li>
+							<li><strong>(bool)</strong>, <strong>(boolean)</strong> - castea a boolean</li>
+							<li><strong>(float)</strong>, <strong>(double)</strong>, <strong>(real)</strong> - castea a float</li>
+							<li><strong>(string)</strong> - castea a string</li>
+							<li><strong>(array)</strong> - castea a array</li>
+							<li><strong>(object)</strong> - castea a object</li>
+							<li><strong>(unset)</strong> - castea a NULL (PHP 5)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Arreglos</h2>
+						<p>
+							Un arreglo en PHP es un mapa ordenado. Un mapa es un tipo que asocia llaves y valores.
+							Este tipo de dato está optimizado para diferentes usuarios ya que puede ser utilizado como un arreglo,
+							una lista, un hash table, un diccionario, una colección, una cola y probablemente muchos mas.
+							Los valores pueden ser otros arreglos, inclusive, arreglos multidimencionales.
+						</p>
+					</section>
+
+					<section>
+						<p>
+							Los arreglos pueden crearse mediante la palabra reservada <strong>array</strong> o utilizando <strong>[]</strong> en la versión de PHP 5.4+.
+						</p>
+						<pre><code class="php5"><?php
+$arreglo = array(
+	"foo" => "bar",
+	"bar" => "foo"
+);
+
+// PHP 5.4+
+$arreglo = [
+	"foo" => "bar",
+	"bar" => "foo"
+];</code></pre>
+					</section>
+
+					<section class="small">
+						<h2>Keys, keys, keys!</h2>
+						<p>
+							Adicionalmente ocurren los siguientes casteos con las llaves:
+						</p>
+						<ul>
+							<li>Cadenas de texto conteniendo enteros validos serán casteados al tipo entero.
+							Por ejemplo, la llave <i>"8"</i> será interpretada como <i>8</i>. Por otro lado, la llave
+							<i>"08"</i> no será casteada.</li>
+							<li>Las llaves float también serán casteadas a enteros, lo que significa que la
+							parte fraccional será truncada. Por ejemplo, la llave <i>8.7</i> en realidad será <i>8</i>.</li>
+							<li>Boleanos también son convertidos a enteros, <i>True</i> es <i>1</i> y <i>False</i> es <i>0</i>.</li>
+							<li><i>Null</i> será una cadena de texto vacia.</li>
+							<li><strong>No se pueden utilizar arreglos u objetos como llaves</strong>, esto lanzará un <i>warning: Illegal offset type</i>.</li>
+						</ul>
+					</section>
+
+					<section>
+						<p>
+							Si multiples elementos en el arreglo se declaran con la misma llave, solamente
+							el último elemento con esa llave será usado ya que los demás elementos serán sobreescritos.
+						</p>
+
+						<pre><code class="php5">&lt;?php
+$data = [
+	"8" =&gt; "String to Integer",
+	"08" =&gt; "String",
+	9.7 =&gt; "Float to Integer",
+	true =&gt; "True is Integer",
+	null =&gt; "Null is empty string"
+];
+
+array(5) {
+  [8] =&gt; string(17) "String to Integer"
+  ["08"] =&gt; string(6) "String"
+  [9] =&gt; string(16) "Float to Integer"
+  [1] =&gt; string(15) "True is Integer"
+  [""] => string(20) "Null is empty string"
+}</code></pre>
+					</section>
+
+					<section class="small">
+						<p>
+							Podemos crear un arreglo sin especificar la llave, la cual se agregará de manera
+							incremental iniciando con el indice 0:
+						</p>
+						<pre><code class="php5">&lt;?php
+
+$data = array("foo", "bar", "baz", "zab");
+
+array(4) {
+  [0] =&gt; string(3) "foo"
+  [1] =&gt; string(3) "bar"
+  [2] =&gt; string(5) "baz"
+  [3] =&gt; string(5) "zab"
+}</code></pre>
+						<p>
+							Podemos especificar llave solo para algunos elementos:
+						</p>
+
+						<pre><code class="php5">&lt;?php
+$array = array("a", "b", 6 =&gt; "c", "d");
+
+array(4) {
+  [0] =&gt; string(1) "a"
+  [1] =&gt; string(1) "b"
+  [6] =&gt; string(1) "c"
+  [7] =&gt; string(1) "d"
+}</code></pre>
+					</section>
+
+					<section>
+						<h2>Type Juggling</h2>
+						<p>
+							El tipo de dato de la variable es determinado al momento de su asignación, es decir,
+							si a la variable <strong>$var</strong> le asignamos una cadena de texto la variable el tipo será string,
+							si asignamos un entero tl tipo será entero.
+						</p>
+						<pre><code class="php5">&lt;?php
+$foo = "0";  // $foo es string
+$foo += 2;   // $foo es ahora un entero (2)
+$foo = $foo + 1.3;  // $foo es ahora un flotante (3.3)
+$foo = 5 + "10 Little Piggies"; // $foo es entero (15)
+$foo = 5 + "10 Small Pigs";     // $foo es entero (15)</code></pre>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Built-in Web Server</h2>
+						<p>
+							Eejecutando el servidor integrado
+						</p>
+
+						<pre><code class=""># Linux
+$ cd my_awesome_project
+$ php -S localhost:8080
+						</code></pre>
+
+						<pre><code class=""># Windows
+> cd my_awesome_project
+> c:\xampp\php\php.exe -S localhost:8080
+						</code></pre>
+
+						<pre><code class=""># Linux
+$ php -S localhost:8080 -t /home/sergio/projects/my_awesome_project
+						</code></pre>
+
+						<pre><code class=""># Windows
+> php.exe -S localhost:8080 -t c:\projects/my_awesome_project
+						</code></pre>
+
+					</section>
+
+					<section>
+						<h2>Ruteo de contenido estático</h2>
+						<p>
+							Para utilizar un script de ruteo en el desarrollo con
+							el CLI Web Server que sea funcional en producción podemos
+							utilizar la funcion php_sapi_name() que nos regresa
+							el tipo de interfaz en la que se está ejecutando PHP.
+						</p>
+
+						<pre><code class="php5">
+&lt;?php
+// router.php
+if (php_sapi_name() == 'cli-server') {
+    /* rutear contenido estático y retornar false */
+}
+/* continuar con el flujo normal del archivo .php */
+?&gt;
+						</code></pre>
+
+					</section>
+
+					<section>
+						<h2>Simulando un sitio web</h2>
+						<p>
+							Con ayuda de los archivos host y el servidor integrado
+							tanto en linux como en windows podemos simular el estár
+							trabajando con una página .com.
+						</p>
+
+						<pre><code>
+# C:\Windows\System32\drivers\etc\host
+
+# localhost name resolution is handled within DNS itself.
+127.0.0.1       localhost
+127.0.0.1       mipagina.com
+						</code></pre>
+
+						<pre><code>
+> php.exe -S mipagina.com:80 -t C:\mipagina.com
+						</code></pre>
+
 					</section>
 
 				</section>

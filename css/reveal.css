@@ -1288,3 +1288,12 @@ body {
 
 .zoomed .reveal .roll span:after {
   visibility: hidden; }
+
+.reveal .slides section code {
+  color: red; }
+
+.reveal .slides section.small p {
+  font-size: 0.8em !important; }
+
+.reveal .slides section.small ul {
+  font-size: 0.8em !important; }

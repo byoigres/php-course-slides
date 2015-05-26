@@ -1315,3 +1315,21 @@ body {
 .zoomed .reveal .roll span:after {
 	visibility: hidden;
 }
+
+
+.reveal .slides section {
+	code {
+		color: red;
+	}
+}
+
+.reveal .slides section.small {
+	//h2 { font-size: 1.5em!important; }
+	p {
+		font-size: 0.8em!important;
+	}
+
+	ul {
+		font-size: 0.8em!important;
+	}
+}
