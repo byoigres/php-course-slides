@@ -427,3 +427,136 @@ Con ayuda de los archivos host y el servidor integrado tanto en linux como en wi
 ```shell
 > php.exe -S mipagina.com:80 -t C:\mipagina.com
 ```
+
+
+# Install
+
+sudo apt install php5-mysql
+
+sudo apt install php-pear
+
+```shell
+sudo pear install PHP_CodeSniffer
+downloading PHP_CodeSniffer-2.3.2.tgz ...
+Starting to download PHP_CodeSniffer-2.3.2.tgz (467,423 bytes)
+................done: 467,423 bytes
+install ok: channel://pear.php.net/PHP_CodeSniffer-2.3.2
+
+```
+
+
+# Framework
+
+## Yelu
+
+```shell
+composer init
+```
+
+Editamos composer.json y agregamos
+
+```json
+"autoload": {
+	"psr-4": {
+		"Coppel\\":"src/"
+	}
+}
+```
+
+Ejecutamos
+
+
+```shell
+composer dump-autoload
+```
+
+Consideraciones
+
+- El nombre del archivo debe de iniciar con mayuscula a como está la clase.
+
+
+# otros
+
+- require, include
+
+- Clases
+  - Constructores
+  - Destructores
+- Métodos mágicos.
+
+- PHP build-in server
+
+
+$this, parent, static
+
+Crear archivos de configuración
+
+
+foreach
+
+Por que no llamarlo HomeController, ItemController, ItemModel, solo Home, Item e Item
+
+
+BaseController
+	Print text
+	Pasar configuración por método estático.
+	Inject views path
+	Load a view (internalRender whitout context)
+
+Add layout
+	Add Context
+
+Agregar assets
+
+Formar el home con jquery
+
+
+Crear el controlador Items
+	Cargar vista
+
+
+Crear el modelo items
+	Crear el baseModel
+	No se puede escapar una variable estática: $data = "{Yelu::$config->baseDir}$view.php";
+	Class constants and static properties/methods will not work because the complex syntax looks for the '$'. // http://php.net/manual/en/language.types.string.php#language.types.string.parsing.complex
+	Crear la conexion a base de datos.
+	Cargar el módelo desde el BaseController
+
+Agregar a la función BaseController->render el parámetro locals.
+
+
+En la vista item/list mostrar el paso de variables
+
+Mostrar el cliclo sin datos, solo el código html.
+
+Crear la función getItems usando dbh->query.
+
+
+Agregar los elementos básicos como nombre del producto, descripción, precio.
+
+
+Agregar las imagenes a los asets y al listado.
+
+cambiar el query para obtener la categoria
+
+
+Cambiar el nombre de getItems por getItemsPerPage()
+
+crear función getTotalItems;
+
+
+Agregar los parametros $start, $itemsPerPage
+
+cambiar dbh->query por dbh->prepare
+
+
+agregar variables globales al contexto
+
+Mostrar el paginado sin las categorias
+
+Detalles como mostar el precio en formato de moneda
+
+
+
+
+Crear sección detalle.

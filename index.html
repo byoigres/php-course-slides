@@ -518,6 +518,216 @@ if (php_sapi_name() == 'cli-server') {
 
 				</section>
 
+				<section>
+
+					<section class="composer">
+						<h2>Composer</h2>
+						<img src="/images/logo-composer-transparent.png" alt="" />
+					</section>
+
+					<section>
+						<h2>Composer</h2>
+						<p>
+							Es un gestor de dependencias para PHP que está sumamente inspirado en el gestor
+							de dependencias NPM que utiliza node.js.
+						</p>
+					</section>
+
+					<section>
+						<h2>Instalación</h2>
+						<p>
+							Para la instalación de composer es necesario seguir las instrucciones de su sitio web:
+							<a href="https://getcomposer.org/">getcomposer.org/</a>
+						</p>
+					</section>
+
+					<section>
+						<h2>Uso</h2>
+						<p>
+							Desde la linea de comandos ejecutamos el siguiente comando para inicializar
+							un proyecto de composer:
+						</p>
+
+						<pre><code class="shell">composer init</code></pre>
+						<p>
+							Composer solicitará el nombre del paquete (algo como un namespace) que estamos creando.
+							Debemos proporcionar uno de la manera <code>&lt;vendor&gt;/&lt;name&gt;</code>. También debemos
+							proporcionar una descripción y un autor con la forma <code>Nombre &lt;my@email&gt;</code>
+						</p>
+					</section>
+
+					<section>
+						<h2>composer.json</h2>
+
+						<pre><code class="json">{
+    "name": "coppel/shoppingcart",
+    "description": "A simple shopping cart website",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergio Flrores",
+            "email": "byoigres@gmail.com"
+        }
+    ],
+    "require": {}
+}</code></pre>
+					</section>
+
+					<section>
+						<h2>Autocarga mediante el estandar PSR-4</h2>
+						<p>
+							Podemos utilizar el estandar de autocarga de archivos
+							<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>
+							para cargar nuestros archivos de manera automática. Solo se reuiere editar el archivo <code>composer.json</code>
+							y agregar el campo <code>autoload</code> y <code>PSR-4</code>.
+						</p>
+					</section>
+
+					<section>
+						<h2>Definiendo la autocarga con psr-4</h2>
+						<pre><code>{
+    "name": "coppel/shoppingcart",
+    "description": "A simple shopping cart website",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergio Flrores",
+            "email": "byoigres@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Coppel\\": "src/",
+            "Coppel\\Controllers\\": "src/controllers/",
+            "Coppel\\Models\\": "src/models/",
+            "Coppel\\Externo\\": "../proyecto/src/"
+        }
+    }
+}</code></pre>
+					</section>
+
+					<section>
+						<h2>Actualizando cambios</h2>
+						<p>
+							Una vez agregadas las referencias de los namespaces a utilizar
+							debemos ejecutar el siguiente comando para actualizar las
+							referencias:
+						</p>
+
+						<pre><code>composer dump-autoload</code></pre>
+					</section>
+
+					<section>
+						<h2>Utilizando la autocarga desde PHP</h2>
+						<p>
+							Para utilizar los archivos de autocarga que se generan con
+							composer es necesario incluir el archivo <code>vendor/autoload.php</code>
+							en el script inicial de PHP.
+						</p>
+						<pre><code class="php5">&lt;?
+
+require_once "./vendor/autoload.php";</code></pre>
+
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>MVC</h2>
+
+						<p>
+							<strong>MVC</strong> viene de <strong>Model</strong>-<strong>View</strong>-<strong>Controller</strong>.
+							Es un patrón de diseño o arquitectura en capas para implementar el diseño de interfaces. Divide la aplicación
+							en tres partes inter-conectadas pero separando su interpretación interna.
+						</p>
+					</section>
+
+					<section>
+						<h2>Representación gráfica</h2>
+						<img src="/images/mvc.png" alt="" />
+					</section>
+
+				</section>
+
+				<section>
+
+					<section class="small">
+						<h2>Proyecto</h2>
+						<p>
+							El proyecto será un carrito de compras en el cual deberemos poder
+							realizar las siguientes acciones:
+
+							<ul>
+								<li>Registarse como usuario</li>
+								<li>Iniciar sesión</li>
+								<li>Buscar productos</li>
+								<li>Páginar el listado de los productos</li>
+								<li>Filtrar productos por categorias</li>
+								<li>Ver el detalle del producto</li>
+								<li>Agregar productos al carrito de compras</li>
+								<li>Hacer un checkout de los productos</li>
+							</ul>
+						</p>
+					</section>
+
+					<section class="small">
+						<h2>Miniframework</h2>
+
+						<p>
+							Además el proyecto deberá utilizar un framework que se encontrará
+							ubicado en un directorio separado el cual deberá cumplir con lo siguiente:
+							<ul>
+								<li>Realizar un ruteo de url hacia las acciones de un controlador</li>
+								<li>
+									Utilizar un controlador base para realizar acciones como
+									<ul>
+										<li>Cargar vistas</li>
+										<li>Cargar modelos</li>
+										<li>Procesar un layut de manera de template</li>
+									</ul>
+								</li>
+								<li>
+									Utilizar un modelo base para realizar las siguientes acciones:
+									<ul>
+										<li>Generar una conexion a base de datos a partir de una configuración</li>
+									</ul>
+								</li>
+							</ul>
+						</p>
+					</section>
+
+					<section class="small">
+						<h2>Estructura de directorio</h2>
+						<pre>|-- shoppingcart
+    |-- composer.json
+    |-- index.php
+    |-- src
+    |   |-- assets
+    |   |   |-- css
+    |   |   |-- fonts
+    |   |   |-- images
+    |   |   |-- js
+    |   |-- config
+    |   |-- controllers
+    |   |-- models
+    |   |-- views
+    |-- vendor</pre>
+<pre>|-- framework
+    |-- composer.json
+    |-- src
+    |   |-- BaseController.php
+    |   |-- BaseModel.php
+    |   |-- Router.php
+    |   |-- Framework.php
+    |-- vendor
+</pre>
+					</section>
+
+				</section>
+
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
