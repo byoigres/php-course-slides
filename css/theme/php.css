@@ -245,9 +245,9 @@ body {
  *********************************************/
 .reveal section img {
   margin: 15px 0px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 0px solid rgba(255, 255, 255, 0.87);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
+  background: transparent;
+  border: transparent;
+  box-shadow: none;
 
 .reveal a img {
   -webkit-transition: all 0.15s linear;
